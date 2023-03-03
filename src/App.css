@@ -1,6 +1,10 @@
 @font-face {
   font-family: headerFont;
-  src: url("../Purple\ Smile.ttf");
+  src: url("../Seagram\ tfb.ttf");
+}
+@font-face {
+  font-family: buttonFont;
+  src: url("../Bloom\ Monday\ Demo.otf");
 }
 
 .App{
@@ -9,8 +13,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(rgb(69, 69, 228), rgb(13, 28, 123));
+  /*background-image: linear-gradient(rgb(69, 69, 228), rgb(13, 28, 123));*/
+  background-image: url("../biblePic.jpg");
   font-family: headerFont;
+  background-size: 2100px 1100px;
 }
 
 .heading{
@@ -18,10 +24,43 @@
   text-transform: uppercase;
   font-size: 40px;
   margin: 30px 0;
-  color: white;
+  color: rgb(226, 130, 20);
   z-index: 1;
   text-align: center;
   text-shadow: 3px 3px 5px black;
+}
+
+.commandmentHeader{
+  color:rgb(226, 130, 20);
+  font-size: 80px;
+  text-shadow: 3px 3px 5px black;
+  letter-spacing: 5px;
+}
+
+.grid-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+
+.grid-item{
+  background-color:rgba(0, 0, 0, 0.842);
+  border: none;
+  border-radius: 5px;
+  font-size: 60px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  transition: 0.4s all;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.76);
+  font-family: buttonFont;
+  letter-spacing: 3px;
+}
+.grid-item:hover{
+  box-shadow: 3px 3px 30px rgb(255, 111, 15);
+  transform: scale(1.09);
 }
 
 @media(max-width: 800px){
