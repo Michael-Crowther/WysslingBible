@@ -4,17 +4,18 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Buffer } from 'buffer';
 
+/*
 const jwtClient = new google.auth.JWT(
   key.client_email,
   undefined,
   key.private_key,
   ['https://www.googleapis.com/auth/documents.readonly'] // scopes needed for the Google Docs API
 );
-
+*/
 
 const General: React.FC = () => {
     const [todo, setTodo] = useState<string>("");
-
+    /*
     const [docContent, setDocContent] = useState<string>("Loading...");
 
     jwtClient.authorize((err, tokens) => {
@@ -45,7 +46,7 @@ const General: React.FC = () => {
             setDocContent("No content found");
         });
     });
-
+*/
     return(
         <div className="mainContent">
             <Link to="/" style = {{textDecoration: 'none', color: 'white'}}>
@@ -54,7 +55,7 @@ const General: React.FC = () => {
                 </div>
             </Link>
             <h1 className="pageHeader">SLA / General</h1>
-            <div>{docContent}</div>
+           
         </div>
     );
 }
