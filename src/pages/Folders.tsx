@@ -12,7 +12,7 @@ const Folders: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">FOLDERS</h1>
+            <h1 className="pageHeader">Folders</h1>
         </div>
     );
 }

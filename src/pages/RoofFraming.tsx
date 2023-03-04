@@ -12,7 +12,7 @@ const RoofFraming: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">ROOF FRAMING</h1>
+            <h1 className="pageHeader">Roof Framing</h1>
         </div>
     );
 }

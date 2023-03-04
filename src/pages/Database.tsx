@@ -12,7 +12,7 @@ const Database: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">AHJ DATABASE</h1>
+            <h1 className="pageHeader">AHJ Database</h1>
         </div>
     );
 }

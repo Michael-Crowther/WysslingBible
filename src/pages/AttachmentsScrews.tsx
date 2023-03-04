@@ -12,7 +12,7 @@ const AttachmentsScrews: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">ATTACHMENT & SCREW TYPES</h1>
+            <h1 className="pageHeader">Attachment & Screw Types</h1>
         </div>
     );
 }

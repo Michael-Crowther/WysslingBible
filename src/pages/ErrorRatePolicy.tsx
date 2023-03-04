@@ -12,7 +12,7 @@ const ErrorRatePolicy: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">ERROR RATE POLICY</h1>
+            <h1 className="pageHeader">Error Rate Policy</h1>
         </div>
     );
 }

@@ -12,7 +12,7 @@ const GroundMounts: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">GROUND MOUNTS</h1>
+            <h1 className="pageHeader">Ground Mounts</h1>
         </div>
     );
 }

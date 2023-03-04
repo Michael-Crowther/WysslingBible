@@ -12,7 +12,7 @@ const CodesWindSnow: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">CODES / WIND / SNOW</h1>
+            <h1 className="pageHeader">Codes / Wind / Snow</h1>
         </div>
     );
 }

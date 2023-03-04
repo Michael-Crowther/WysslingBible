@@ -16,7 +16,8 @@
   /*background-image: linear-gradient(rgb(69, 69, 228), rgb(13, 28, 123));*/
   background-image: url("../biblePic.jpg");
   font-family: headerFont;
-  background-size: 2100px 1100px;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .heading{
@@ -35,6 +36,7 @@
   font-size: 80px;
   text-shadow: 3px 3px 5px black;
   letter-spacing: 5px;
+  transition: 0.4s all;
 }
 
 .grid-container{
@@ -63,9 +65,45 @@
   transform: scale(1.09);
 }
 
-@media(max-width: 800px){
+@media(max-width: 1310px){
+  .grid-item{
+   font-size: 45px;
+  }   
+ }
+
+@media(max-width: 1073px){
+  .grid-container{
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+  .grid-item{
+    font-size: 38px;
+   }   
+   .commandmentHeader{
+    font-size: 50px;
+   }
+}
+
+@media(max-height:916px){
+  .App{
+    height: 100%;
+  }
+}
+
+@media(max-width: 799px){
   .heading{
     margin: 15px 0;
-    font-size: 35px;
+    font-size: 25px;
   }
+  .grid-container{
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
+  .grid-item{
+    padding: 4px;
+    margin: 2px;
+  }
+  .commandmentHeader{
+    font-size: 40px;
+   }
 }

@@ -12,7 +12,7 @@ const Calculations: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">CALCULATIONS</h1>
+            <h1 className="pageHeader">Calculations</h1>
         </div>
     );
 }

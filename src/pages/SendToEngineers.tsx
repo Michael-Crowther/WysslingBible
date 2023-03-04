@@ -12,7 +12,7 @@ const SendToEngineers: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">SEND TO ENGINEERS</h1>
+            <h1 className="pageHeader">Send to Engineers</h1>
         </div>
     );
 }

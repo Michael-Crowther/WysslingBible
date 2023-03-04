@@ -12,7 +12,7 @@ const Templates: React.FC = () => {
                     <button className="homeButton">Home</button>
                 </div>
             </Link>
-            <h1 className="pageHeader">TEMPLATES</h1>
+            <h1 className="pageHeader">Templates</h1>
         </div>
     );
 }
