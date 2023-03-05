@@ -5,7 +5,8 @@
 @font-face {
     font-family: buttonFont;
     src: url("/Bloom\ Monday\ Demo.otf");
-  }
+}
+
 
 .input{
     display: flex;
@@ -53,18 +54,19 @@
 }
 
 .buttonContainer{
-    margin-left: 0;
-    margin-right: 0;
     margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .homeButton{
-    background-color:rgba(0, 0, 0, 0.842);
+    background-color: #fadb92;
     border-radius: 5px;
     font-size: 60px;
     cursor: pointer;
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 15px;
     text-align: center;
     transition: 0.4s all;
@@ -72,23 +74,46 @@
     font-family: buttonFont;
     letter-spacing: 3px;
     border: none;
-    position: relative;
-    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 .homeButton:hover{
     cursor: pointer;
-    box-shadow: 3px 3px 30px rgb(255, 111, 15);
+    box-shadow: 3px 3px 30px rgb(226, 130, 20);
     transform: scale(1.09);
 }
 
 .pageHeader{
     font-size: 50px;
     color:rgb(226, 130, 20);
-    position: center;
+    position: relative;
     text-shadow: 3px 3px 5px black;
     font-family: buttonFont;
     letter-spacing: 6px;
     text-decoration: underline;
+    text-align: center;
+}
+
+.googleDocEmbedContainer{
+    /*background: url('/scroll.png') center center;*/
+    background-size: cover;
+    border: none;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+
+.doc{
+    height: 1300px;
+    border: none;
+    border-radius: 10px;
+}
+
+@media(max-width: 1030px){
+    .googleDocEmbedContainer{
+        width: 700px;
+    }
 }
 
 @media(max-width: 800px){
@@ -104,6 +129,12 @@
     }
 }
 
+@media(max-width:724px){
+    .googleDocEmbedContainer{
+        width: 500px;
+    }
+}
+
 @media(max-width: 500px){
     .inputBox{
         font-size: 10px;
@@ -112,5 +143,14 @@
         width: 25px;
         height: 25px;
         font-size: 8px;
+    }
+    .homeButton{
+        font-size: 30px;
+    }
+    .pageHeader{
+        font-size: 30px;
+    }
+    .googleDocEmbedContainer{
+        width: 300px;
     }
 }

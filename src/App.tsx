@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Link, BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import InputFeild from './components/InputFeild';
 import General from './pages/General';
 import Folders from "./pages/Folders";
@@ -13,22 +13,34 @@ import GroundMounts from "./pages/GroundMounts";
 import AttachmentsScrews from "./pages/AttachmentsScrews";
 import Calculations from "./pages/Calculations";
 import './App.css';
+import React from "react";
+
 
 const App: React.FC = () => {
   
   const [todo, setTodo] = useState<string>("");
   const [showLink, setShowLink] = useState(true);
+  
 
   const location = useLocation();
+  
   //The location and useEffect here is to toggle the setShowLink when we return to the home page from other pages
   useEffect(() => {
+    const homeDiv = document.querySelector("#Home");
+
     if (location.pathname === '/') {
       setShowLink(true);
+      homeDiv?.classList.remove("Page");
+      homeDiv?.classList.add("App");
+    }
+    else{
+      homeDiv?.classList.add("Page");
+      homeDiv?.classList.remove("App");
     }
   }, [location]);
 
   return (
-    <div className="App">
+    <div className="App" id="Home">
       <span className="heading">QA / QC Bible</span>
 
       <InputFeild todo={todo} setTodo={setTodo} />
