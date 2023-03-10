@@ -6,7 +6,7 @@ const General: React.FC = () => {
 
   return (
     <div className="mainContent">
-      <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+      <Link to="/" className="homeLink">
         <div className="buttonContainer">
           <button className="homeButton">Home</button>
         </div>

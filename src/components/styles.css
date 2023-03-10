@@ -32,6 +32,29 @@
     outline: none;
 }
 
+.search-terms {
+    border: 1px solid #010101;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 30px;
+    position: absolute;
+    top: 100%;
+    width: 80%;
+    z-index: 1;
+    background-color: #000000;
+}
+  
+.search-term {
+    display: inline-block;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 0.8em;
+    color: #333;
+}
+
 .submit{
     position: absolute;
     width: 50px;
@@ -53,11 +76,18 @@
     cursor: pointer;
 }
 
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .buttonContainer{
     margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .homeButton{
@@ -101,14 +131,37 @@
     display: flex;
     justify-content: center;
     border-radius: 10px;
-
+    animation: glow 3s ease-in-out infinite;
+    box-shadow: 0 0 20px #f3810f;
 }
+
+.homeLink{
+    text-decoration: none;
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .doc{
     height: 1300px;
     border: none;
     border-radius: 10px;
+    height: 1000px;
 }
+
+@keyframes glow {
+    0% {
+      box-shadow: 0 0 20px #f3810f;
+    }
+    50% {
+      box-shadow: 0 0 30px #c36309;
+    }
+    100% {
+      box-shadow: 0 0 20px #f3810f;
+    }
+  }
 
 @media(max-width: 1030px){
     .googleDocEmbedContainer{
