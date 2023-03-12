@@ -82,6 +82,7 @@ html{
   font-family: buttonFont;
   letter-spacing: 3px;
   
+  
 }
 .grid-item:hover{
   box-shadow: 3px 3px 30px rgb(255, 111, 15);

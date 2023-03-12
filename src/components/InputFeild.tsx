@@ -84,20 +84,43 @@ const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
     }
   }
 
+  //This function sets up functionality for clicking
+  //search terms in the drop down menu
+  function handleSearchTermClick(key:string){
+    const path = searchFilter[key];
+    const emptyString = "";
+    if(path){
+      navigate(path);
+      for(let i = 0; i < searchTerms.length; i++){
+        searchTerms.pop();
+      }
+      setSearch("");
+      setSearchTerms([]);
+    }
+
+  }
+
   //this changes the contents of searchTerms when a key is pressed. 
   //This is activated at the end of the input tag in the form
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     const alphanumericRegex = /^[a-zA-Z0-9\s\/]$/;
+    const input = event.currentTarget;
+    const cursorPos = input.selectionStart ?? 0;
+    const selectionStart = input.selectionStart ?? 0;
+    const selectionEnd = input.selectionEnd ?? 0;
 
-    if(alphanumericRegex.test(event.key))
-      searchTerms.push(event.key);
-    else if(event.key == "Backspace" && selectedText == "")
-      searchTerms.pop();//delete one char
-    else if(event.key == "Backspace" && selectedText != ""){
-      for(let i = 0; i < selectedText.length; i++){
-        searchTerms.pop();//delete selected letters
-      }
+    if(event.key == "Backspace" && selectedText == "") {
+      searchTerms.splice(cursorPos - 1, 1);//delete one char
     }
+  
+    if(event.key && selectedText != ""){
+      searchTerms.splice(selectionStart, selectionEnd - selectionStart);//delete selected letters
+    }
+  
+    if(alphanumericRegex.test(event.key)) {
+      searchTerms.splice(cursorPos, 0, event.key);//insert new char
+    }
+      
 
     console.log("search terms: ", searchTerms);
   }
@@ -106,12 +129,26 @@ const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
 
   return (
     <form className="input" onSubmit={handleSearchSubmit}>
-      <input className="inputBox" type="input" onSelect={handleTextSelection} placeholder="Enter a topic to search..." value={search} onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}></input>
+      <input 
+        className="inputBox" 
+        type="input" 
+        onSelect={handleTextSelection} 
+        placeholder="Enter a topic to search..." 
+        value={search} 
+        onChange={(e)=>{
+          const regex = /^[a-zA-Z0-9\s\/\b]+$/; 
+          if(regex.test(e.target.value) || e.target.value == ''){
+            setSearch(e.target.value)
+          }
+        }} 
+        onKeyDown={handleKeyDown}>
+      </input>
+
       <button className="submit" type="submit">Go</button>
       {shouldRenderSearchTerms() && (
         <div className="search-terms">
           {Object.keys(searchFilter).filter(key => key.toLowerCase().startsWith(search.toLowerCase())).map((key, index) => (
-      <span key={index} className={`search-term ${searchFilter[key] ? "clickable" : ""}`}>{key}</span>
+      <span key={index} className={`search-term ${searchFilter[key] ? "clickable" : ""}`} onClick={() => handleSearchTermClick(key)}>{key}</span>
     ))}
         </div>
       )}
