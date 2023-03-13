@@ -20,9 +20,12 @@ type SearchFilter = {
 };
 
 const searchFilter: SearchFilter = {
-  "Sla / General": "/general",
+  "SLA": "/general",
+  "General": "/general",
   "Send to Engineers": "/sendToEngineers",
-  "Codes / Wind / Snow": "/codesWindSnow",
+  "Codes": "/codesWindSnow",
+  "Wind": "/codesWindSnow",
+  "Snow": "/codesWindSnow",
   "Ground Mounts": "/groundMounts",
   "Error Rate Policy": "/errorRatePolicy",
   "Templates": "/templates",
@@ -30,7 +33,43 @@ const searchFilter: SearchFilter = {
   "Calculations": "/calculations",
   "Folders": "/folders",
   "Roof Framing": "/roofFraming",
-  "Attachment & Screw Type": "/attachmentsScrews"
+  "Attachment and Screw Type": "/attachmentsScrews",
+  "Turnaround Time": "/general",
+  "QA / QC Sheet": "/general",
+  "Pay Structure": "/errorRatePolicy",
+  "Patio Structures": "/sendToEngineers",
+  "Pergolas": "/sendToEngineers",
+  "2x4 Rafters": "/sendToEngineers",
+  "High Snow Load": "/sendToEngineers",
+  "Revisions": "/folders",
+  "COM Accounts": "/folders",
+  "Post Installs": "/folders",
+  "Last Names": "/templates",
+  "Addresses": "/templates",
+  "System Sizes": "/templates",
+  "COA Numbers": "/templates",
+  "Roof Slopes": "/roofFraming",
+  "Array Tilt": "/roofFraming",
+  "Roof Material": "/roofFraming",
+  "Assumed Language": "/roofFraming",
+  "Tile Roofing": "/roofFraming",
+  "Metal Framing": "/roofFraming",
+  "Dead Load": "/roofFraming",
+  "Exposure Categories": "/codesWindSnow",
+  "Calculation Checks": "/codesWindSnow",
+  "Oklahoma Projects": "/database",
+  "Houston Projects": "/database",
+  "New Mexico Projects": "/database",
+  "Upcodes": "/database",
+  "ATC Website": "/database",
+  "Illinois Projects": "/database",
+  "Deck Mounts": "/attachmentsScrews",
+  "Pullout Values": "/attachmentsScrews",
+  "M5x60mm Screws": "/attachmentsScrews",
+  "Embedment Depths": "/attachmentsScrews",
+  "5/16 Lag Screws": "/attachmentsScrews",
+  "Attachment Spacing": "/attachmentsScrews",
+  "Spans": "/calculations",
 };
 
 function getLink(searchTerm: string): string | undefined {
@@ -44,19 +83,50 @@ function getLink(searchTerm: string): string | undefined {
 }
 
 const InputFeild = ({ search, setSearch, navigate, initialSearchTerms }: Props) => {
-const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
+  const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
+  const [inputSelected, setInputSelected] = useState(false);
 
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    }
+  }, []);
 
+  //These functions hide and show the drop down menu
+  //if the input box is clicked on
+  //they are modified in the form
+  const handleInputFocus = () => {
+    setInputSelected(true);
+  }
+  function handleDocumentClick(event: MouseEvent){
+    const target = event.target as HTMLElement;
+    const className = target.className;
+    console.log(className);
+    if(className !== "search-terms" && !target.closest(".input"))
+      setInputSelected(false);
+  }
+
+  //happens when the user presses enter or the "GO" button
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(search);
+    //console.log(search);
     const link = getLink(search);
+    let dropDownElements = document.querySelectorAll("#search-term");
+    let numElements = dropDownElements.length;
     if(link){
       navigate(link);
       console.log(link);
-    }
-    else{
-      console.log("no link found for search item");
+      setSearch("");
+      setSearchTerms([]);
+    }//goes to first link in search terms if full key isnt typed
+    else if(numElements != 0){
+      const firstLink = getLink(dropDownElements[0].innerHTML);
+      if(firstLink !== undefined){
+        navigate(firstLink);
+        setSearch("");
+        setSearchTerms([]);
+      }
     }
   };
 
@@ -97,11 +167,11 @@ const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
       setSearch("");
       setSearchTerms([]);
     }
-
   }
 
   //this changes the contents of searchTerms when a key is pressed. 
   //This is activated at the end of the input tag in the form
+  let prevIndex = -1;
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     const alphanumericRegex = /^[a-zA-Z0-9\s\/]$/;
     const input = event.currentTarget;
@@ -120,12 +190,18 @@ const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
     if(alphanumericRegex.test(event.key)) {
       searchTerms.splice(cursorPos, 0, event.key);//insert new char
     }
-      
-
-    console.log("search terms: ", searchTerms);
+    /*
+    setTimeout(() => {
+      let firstElement = document.querySelector(".search-term");
+      console.log(firstElement?.className);
+      firstElement?.classList.add("search-term-selected");
+    }, 1);
+    */
+    //console.log("search terms: ", searchTerms);
   }
 
   //console.log("search terms size: ", searchTerms.length);
+
 
   return (
     <form className="input" onSubmit={handleSearchSubmit}>
@@ -141,14 +217,16 @@ const [searchTerms, setSearchTerms] = useSearchTerms(initialSearchTerms);
             setSearch(e.target.value)
           }
         }} 
-        onKeyDown={handleKeyDown}>
+        onKeyDown={handleKeyDown}
+        onFocus={handleInputFocus}
+        >
       </input>
 
-      <button className="submit" type="submit">Go</button>
-      {shouldRenderSearchTerms() && (
-        <div className="search-terms">
+      <button className="submit" type="submit" >Go</button>
+      {inputSelected && shouldRenderSearchTerms() && (
+        <div className="search-terms" id="search-terms">
           {Object.keys(searchFilter).filter(key => key.toLowerCase().startsWith(search.toLowerCase())).map((key, index) => (
-      <span key={index} className={`search-term ${searchFilter[key] ? "clickable" : ""}`} onClick={() => handleSearchTermClick(key)}>{key}</span>
+      <span key={index} className="search-term" id="search-term" onClick={() => handleSearchTermClick(key)}>{key}</span>
     ))}
         </div>
       )}
